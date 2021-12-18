@@ -18,9 +18,10 @@ class WeatherService extends GetxService {
   static WeatherService get to => Get.find();
 
   WeatherService(this.client);
-  
+
   Future<Forecast> getForecast(double lon, double lat) async {
-    var resp = await client.get('$endpoint?lon=$lon&lat=$lat&product=astro&output=json');
+    var resp = await client
+        .get('$endpoint?lon=$lon&lat=$lat&product=astro&output=json');
     var forecast = Forecast.fromJson(jsonDecode(resp.body));
     forecast.dataseries.removeAt(0);
     return Forecast.fromJson(jsonDecode(resp.body));
