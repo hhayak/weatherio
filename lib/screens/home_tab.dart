@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weatherio/controllers/weather_controller.dart';
@@ -9,28 +10,33 @@ class WeatherTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Get.find<WeatherController>().obx(
-        (state) => GestureDetector(
-          onTap: () {
-            Get.to(() => DetailsPage(state!));
-          },
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Hero(
-                tag: 'cityCard',
-                child: CityCard(state!),
-              ),
-              const Text(
-                'Tap for details',
-                style: TextStyle(
-                    color: Colors.indigo, fontStyle: FontStyle.italic),
-              ),
-            ],
+    return CupertinoPageScaffold(
+      navigationBar: const CupertinoNavigationBar(
+        middle: Text('Weatherio'),
+      ),
+      child: Center(
+        child: Get.find<WeatherController>().obx(
+          (state) => GestureDetector(
+            onTap: () {
+              Get.to(() => DetailsPage(state!));
+            },
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Hero(
+                  tag: 'cityCard',
+                  child: CityCard(state!),
+                ),
+                const Text(
+                  'Tap for details',
+                  style: TextStyle(
+                      color: Colors.indigo, fontStyle: FontStyle.italic),
+                ),
+              ],
+            ),
           ),
+          onLoading: const CircularProgressIndicator(),
         ),
-        onLoading: const CircularProgressIndicator(),
       ),
     );
   }

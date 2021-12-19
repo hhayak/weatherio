@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:weatherio/constants/profile.dart';
 import 'package:weatherio/constants/theme.dart';
 import 'package:weatherio/widgets/github_icon.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileTab extends StatelessWidget {
   const ProfileTab({Key? key}) : super(key: key);
@@ -44,11 +45,19 @@ class ProfileTab extends StatelessWidget {
 class IconText extends StatelessWidget {
   final IconData icon;
   final String text;
+  final Uri? url;
+
+  Future<void> _launchUrl() async {
+    if (await canLaunch(url.toString())) {
+      launch(url.toString());
+    }
+  }
 
   const IconText({
     Key? key,
     required this.icon,
     required this.text,
+    this.url,
   }) : super(key: key);
 
   @override
@@ -63,9 +72,16 @@ class IconText extends StatelessWidget {
         const SizedBox(
           width: 5,
         ),
-        Text(
-          text,
-          style: const TextStyle(fontFamily: AppFonts.openSans, fontSize: 14),
+        GestureDetector(
+          onTap: url == null ? null : _launchUrl,
+          child: Text(
+            text,
+            style: TextStyle(
+              fontFamily: AppFonts.openSans,
+              fontSize: 14,
+              color: url != null ? Colors.blue : null,
+            ),
+          ),
         ),
       ],
     );
@@ -98,8 +114,16 @@ class ProfileContactInfo extends StatelessWidget {
         children: [
           IconText(icon: Icons.location_on, text: location),
           IconText(icon: Icons.call, text: phone),
-          IconText(icon: Icons.email_outlined, text: email),
-          IconText(icon: GithubIcon.github_circled, text: github),
+          IconText(
+            icon: Icons.email_outlined,
+            text: email,
+            url: Uri(scheme: 'mailto', path: email),
+          ),
+          IconText(
+            icon: GithubIcon.github_circled,
+            text: github,
+            url: Uri(scheme: 'https', path: github),
+          ),
         ],
       ),
     );
