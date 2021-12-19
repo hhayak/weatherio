@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weatherio/constants/profile.dart';
+import 'package:weatherio/constants/settings.dart';
 import 'package:weatherio/constants/theme.dart';
 import 'package:weatherio/widgets/github_icon.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,27 +12,27 @@ class ProfileTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
-        middle: Text('Profile'),
+        middle: Text('profile'),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children:  [
               ProfileMainDisplay(
-                pictureUrl: Profile.profileUrl,
-                name: Profile.name,
-                title: Profile.title,
+                pictureUrl: Settings.profile.profileUrl,
+                name: Settings.profile.name,
+                title: Settings.profile.title,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ProfileContactInfo(
-                phone: Profile.phone,
-                email: Profile.email,
-                location: Profile.location,
-                github: Profile.github,
+                phone: Settings.profile.phone,
+                email: Settings.profile.email,
+                location: Settings.profile.location,
+                github: Settings.profile.github,
               ),
             ],
           ),
@@ -120,7 +120,7 @@ class ProfileContactInfo extends StatelessWidget {
             url: Uri(scheme: 'mailto', path: email),
           ),
           IconText(
-            icon: GithubIcon.github_circled,
+            icon: GithubIcon.githubCircled,
             text: github,
             url: Uri(scheme: 'https', path: github),
           ),

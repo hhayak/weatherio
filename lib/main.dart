@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weatherio/constants/theme.dart';
 import 'package:weatherio/controllers/weather_controller.dart';
-import 'package:weatherio/models/city.dart';
 import 'package:weatherio/screens/main_page.dart';
 import 'package:weatherio/services/weather_service.dart';
 
@@ -24,8 +23,7 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/',
           page: () => const MainPage(),
-          binding:
-              BindingsBuilder.put(() => WeatherController(City(8.8, 53.083))),
+          binding: BindingsBuilder.put(() => WeatherController()),
         ),
       ],
       theme: lightTheme,

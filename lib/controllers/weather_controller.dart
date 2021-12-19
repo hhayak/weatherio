@@ -1,22 +1,29 @@
 import 'package:get/get.dart';
+import 'package:weatherio/constants/settings.dart';
 import 'package:weatherio/models/city.dart';
 import 'package:weatherio/models/forecast.dart';
 import 'package:weatherio/services/weather_service.dart';
 
 class WeatherController extends GetxController with StateMixin<Forecast> {
-  final City city;
+  late final City city;
   Forecast? forecast;
 
-  WeatherController(this.city);
+  WeatherController();
 
   @override
   void onReady() {
-    getForecast();
+    setCity().then((_) => fetchAndDisplayForecast());
     super.onReady();
   }
 
-  Future<void> getForecast() async {
-    forecast = await WeatherService.to.getForecast(city.lon, city.lat);
+  /// Simulates retrieving the city from persistent storage or other sources.
+  Future<void> setCity() async {
+    city = Settings.city;
+  }
+
+  /// Fetches the forecast and notifies any listening widgets.
+  Future<void> fetchAndDisplayForecast() async {
+    forecast = await WeatherService.to.fetchForecast(city.lon, city.lat);
     change(forecast, status: RxStatus.success());
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weatherio/constants/settings.dart';
 import 'package:weatherio/models/forecast.dart';
 import 'package:weatherio/widgets/date_card.dart';
 
@@ -31,7 +32,7 @@ class CityCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Bremen',
+                Settings.city.name,
                 style: titleStyle,
               ),
               DateCard(forecast.init),

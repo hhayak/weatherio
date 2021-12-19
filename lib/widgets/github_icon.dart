@@ -25,5 +25,5 @@ class GithubIcon {
   static const _kFontFam = 'GithubIcon';
   static const String? _kFontPkg = null;
 
-  static const IconData github_circled = IconData(0xf09b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData githubCircled = IconData(0xf09b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
