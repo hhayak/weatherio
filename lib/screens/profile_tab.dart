@@ -12,7 +12,7 @@ class ProfileTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
-        middle: Text('profile'),
+        middle: Text('Profile'),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -42,6 +42,8 @@ class ProfileTab extends StatelessWidget {
   }
 }
 
+/// Icon followed by a text.
+/// if [url] is not null, the text becomes a hyperlink.
 class IconText extends StatelessWidget {
   final IconData icon;
   final String text;
@@ -163,7 +165,10 @@ class ProfileMainDisplay extends StatelessWidget {
           pictureUrl,
           width: 90,
           height: 90,
+          cacheWidth: 90,
+          cacheHeight: 90,
           fit: BoxFit.scaleDown,
+          errorBuilder: (context, e, trace) => const FlutterLogo(),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),

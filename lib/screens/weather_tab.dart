@@ -36,19 +36,31 @@ class WeatherTab extends StatelessWidget {
             ),
           ),
           onLoading: const CircularProgressIndicator(),
-          onError: (e) => Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(e ?? 'Error'),
-              TextButton(
-                onPressed:
-                    Get.find<WeatherController>().fetchAndDisplayForecast,
-                child: const Text('Try Again'),
-              )
-            ],
+          onError: (e) => WeatherErrorMessage(
+            errorText: e,
           ),
         ),
       ),
+    );
+  }
+}
+
+class WeatherErrorMessage extends StatelessWidget {
+  final String? errorText;
+
+  const WeatherErrorMessage({Key? key, this.errorText}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(errorText ?? 'Something went wrong.'),
+        TextButton(
+          onPressed: Get.find<WeatherController>().fetchAndDisplayForecast,
+          child: const Text('Try Again'),
+        )
+      ],
     );
   }
 }
