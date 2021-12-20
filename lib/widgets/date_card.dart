@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weatherio/utils.dart';
 
 class DateCard extends StatelessWidget {
   final DateTime dateTime;
@@ -9,10 +10,6 @@ class DateCard extends StatelessWidget {
     color: Colors.indigoAccent,
     fontSize: 16,
   );
-
-  String _buildDateTimeString(DateTime d) {
-    return '${d.day}.${d.month}.${d.year} at ${d.hour}h00';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +22,7 @@ class DateCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: Text(
-          _buildDateTimeString(dateTime),
+          buildDateTimeString(dateTime),
           style: dateStyle,
         ),
       ),

@@ -41,6 +41,7 @@ class DataColumn extends StatefulWidget {
 }
 
 class _DataColumnState extends State<DataColumn> {
+  final int _incrementValue = 3;
   late int _offset;
 
   @override
@@ -92,12 +93,14 @@ class _DataColumnState extends State<DataColumn> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
+                tooltip: 'Before ${_incrementValue}h',
                 onPressed: _offset > 0 ? _prev : null,
                 icon: const Icon(CupertinoIcons.left_chevron),
               ),
               DateCard(widget.forecast.init
                   .add(Duration(hours: dayForecast.timepoint))),
               IconButton(
+                tooltip: 'After ${_incrementValue}h',
                 onPressed: _offset < widget.forecast.dataseries.length - 1
                     ? _next
                     : null,
