@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weatherio/controllers/weather_controller.dart';
 import 'package:weatherio/screens/details_page.dart';
-import 'package:weatherio/widgets/city_card.dart';
+import 'package:weatherio/widgets/city_weather_card.dart';
 
 class WeatherTab extends StatelessWidget {
   const WeatherTab({Key? key}) : super(key: key);
@@ -25,7 +25,11 @@ class WeatherTab extends StatelessWidget {
               children: [
                 Hero(
                   tag: 'cityCard',
-                  child: CityCard(state!),
+                  child: CityWeatherCard(
+                    state!,
+                    onRefresh:
+                        Get.find<WeatherController>().fetchAndDisplayForecast,
+                  ),
                 ),
                 const Text(
                   'Tap for details',

@@ -6,8 +6,12 @@ import 'package:weatherio/controllers/weather_controller.dart';
 import 'package:weatherio/screens/main_page.dart';
 import 'package:weatherio/services/weather_service.dart';
 
-void main() {
+void registerServices() {
   Get.put(WeatherService(WeatherioClient()));
+}
+
+void main() {
+  registerServices();
   runApp(const MyApp());
 }
 

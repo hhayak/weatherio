@@ -7,6 +7,7 @@ class AppFonts {
 
 }
 const lightTheme = CupertinoThemeData(
+  brightness: Brightness.light,
   primaryColor: Colors.indigo,
   barBackgroundColor: CupertinoColors.systemGrey6,
 );
