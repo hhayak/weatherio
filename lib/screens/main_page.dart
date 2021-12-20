@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:weatherio/screens/home_tab.dart';
+import 'package:weatherio/screens/weather_tab.dart';
 import 'package:weatherio/screens/profile_tab.dart';
 
 class MainPage extends StatelessWidget {

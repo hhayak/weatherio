@@ -18,7 +18,7 @@ class WeatherService extends GetxService {
     var resp = await client
         .get('$endpoint?lon=$lon&lat=$lat&product=$product&output=json');
     var forecast = Forecast.fromJson(jsonDecode(resp.body));
-    forecast.dataseries.removeAt(0);
-    return Forecast.fromJson(jsonDecode(resp.body));
+    //forecast.dataseries.removeAt(0);
+    return forecast;
   }
 }

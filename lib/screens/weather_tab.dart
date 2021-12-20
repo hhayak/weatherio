@@ -36,6 +36,17 @@ class WeatherTab extends StatelessWidget {
             ),
           ),
           onLoading: const CircularProgressIndicator(),
+          onError: (e) => Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(e ?? 'Error'),
+              TextButton(
+                onPressed:
+                    Get.find<WeatherController>().fetchAndDisplayForecast,
+                child: const Text('Try Again'),
+              )
+            ],
+          ),
         ),
       ),
     );

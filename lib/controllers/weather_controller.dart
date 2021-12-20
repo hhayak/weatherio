@@ -23,7 +23,12 @@ class WeatherController extends GetxController with StateMixin<Forecast> {
 
   /// Fetches the forecast and notifies any listening widgets.
   Future<void> fetchAndDisplayForecast() async {
-    forecast = await WeatherService.to.fetchForecast(city.lon, city.lat);
-    change(forecast, status: RxStatus.success());
+    change(null, status: RxStatus.loading());
+    try {
+      forecast = await WeatherService.to.fetchForecast(city.lon, city.lat);
+      change(forecast, status: RxStatus.success());
+    } catch (e) {
+      change(null, status: RxStatus.error('Something went wrong.'));
+    }
   }
 }
