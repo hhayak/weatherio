@@ -4,6 +4,7 @@ import 'package:weatherio/models/city.dart';
 class Settings {
   static const City city = City('Bremen', 8.8, 53.0833);
   static const String product = 'astro';
+  static const String temperatureUnit = '°C';
   static const Profile profile = Profile(
     'assets/profile_picture.JPG',
     'Hamza Hayak',

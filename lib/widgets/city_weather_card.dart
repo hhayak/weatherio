@@ -45,7 +45,7 @@ class CityWeatherCard extends StatelessWidget {
                   ),
                   DateCard(forecast.init),
                   Text(
-                    forecast.dataseries.first.temp2m.toString() + '°C',
+                    forecast.dataseries.first.temp2m.toString() + Settings.temperatureUnit,
                     style: tempStyle,
                   ),
                 ],

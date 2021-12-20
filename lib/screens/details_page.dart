@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:weatherio/constants/settings.dart';
 import 'package:weatherio/models/forecast.dart';
 import 'package:weatherio/widgets/date_card.dart';
 
@@ -67,7 +68,7 @@ class _DataColumnState extends State<DataColumn> {
       children: [
         DataRow(
           'Temperature',
-          dayForecast.temp2m.toString() + '°C',
+          dayForecast.temp2m.toString() + Settings.temperatureUnit,
         ),
         DataRow(
           'Cloud Cover',
