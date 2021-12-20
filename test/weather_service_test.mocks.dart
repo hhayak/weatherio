@@ -308,7 +308,6 @@ class MockWeatherioClient extends _i1.Mock implements _i3.WeatherioClient {
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
   @override
-  // ignore: unnecessary_overrides
   String toString() => super.toString();
   @override
   void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),

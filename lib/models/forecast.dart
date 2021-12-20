@@ -32,14 +32,16 @@ class DayForecast {
   final int cloudcover;
   final int seeing;
   final int transparency;
-  final int lifted_index;
+  @JsonKey(name: 'lifted_index')
+  final int liftedIndex;
   final int rh2m;
   final Wind10m wind10m;
   final int temp2m;
-  final String prec_type;
+  @JsonKey(name: 'prec_type')
+  final String precType;
 
   DayForecast(this.timepoint, this.cloudcover, this.seeing, this.transparency,
-      this.lifted_index, this.rh2m, this.wind10m, this.temp2m, this.prec_type);
+      this.liftedIndex, this.rh2m, this.wind10m, this.temp2m, this.precType);
 
   factory DayForecast.fromJson(Map<String, dynamic> json) =>
       _$DayForecastFromJson(json);

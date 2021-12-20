@@ -77,7 +77,7 @@ class _DataColumnState extends State<DataColumn> {
         ),
         DataRow(
           'Lifted Index',
-          dayForecast.lifted_index.toString(),
+          dayForecast.liftedIndex.toString(),
         ),
         DataRow(
           'Seeing',

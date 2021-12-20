@@ -38,11 +38,11 @@ Map<String, dynamic> _$DayForecastToJson(DayForecast instance) =>
       'cloudcover': instance.cloudcover,
       'seeing': instance.seeing,
       'transparency': instance.transparency,
-      'lifted_index': instance.lifted_index,
+      'lifted_index': instance.liftedIndex,
       'rh2m': instance.rh2m,
       'wind10m': instance.wind10m.toJson(),
       'temp2m': instance.temp2m,
-      'prec_type': instance.prec_type,
+      'prec_type': instance.precType,
     };
 
 Temp2m _$Temp2mFromJson(Map<String, dynamic> json) => Temp2m(
