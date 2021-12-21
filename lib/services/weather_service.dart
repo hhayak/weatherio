@@ -3,8 +3,13 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:weatherio/models/forecast.dart';
 
+/// Http client.
+///
+/// Can override some [GetConnect] members to add custom headers, interceptors,
+/// etc...
 class WeatherioClient extends GetConnect {}
 
+/// Service to fetch forecast data from the given endpoint.
 class WeatherService extends GetxService {
   static String endpoint = 'http://www.7timer.info/bin/api.pl';
   final WeatherioClient client;
@@ -17,7 +22,11 @@ class WeatherService extends GetxService {
   Future<Forecast> fetchForecast(double lon, double lat) async {
     var resp = await client
         .get('$endpoint?lon=$lon&lat=$lat&product=$product&output=json');
-    var forecast = Forecast.fromJson(jsonDecode(resp.body));
-    return forecast;
+    if (resp.hasError) {
+      throw Exception(jsonDecode(resp.body));
+    } else {
+      var forecast = Forecast.fromJson(jsonDecode(resp.body));
+      return forecast;
+    }
   }
 }

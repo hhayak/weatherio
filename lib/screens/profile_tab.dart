@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:weatherio/constants/settings.dart';
 import 'package:weatherio/constants/theme.dart';
 import 'package:weatherio/widgets/github_icon.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:weatherio/widgets/icon_text.dart';
 
 class ProfileTab extends StatelessWidget {
   const ProfileTab({Key? key}) : super(key: key);
@@ -38,54 +38,6 @@ class ProfileTab extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-/// Icon followed by a text.
-/// if [url] is not null, the text becomes a hyperlink.
-class IconText extends StatelessWidget {
-  final IconData icon;
-  final String text;
-  final Uri? url;
-
-  Future<void> _launchUrl() async {
-    if (await canLaunch(url.toString())) {
-      launch(url.toString());
-    }
-  }
-
-  const IconText({
-    Key? key,
-    required this.icon,
-    required this.text,
-    this.url,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(
-          icon,
-          color: CupertinoColors.systemGrey3,
-        ),
-        const SizedBox(
-          width: 5,
-        ),
-        GestureDetector(
-          onTap: url == null ? null : _launchUrl,
-          child: Text(
-            text,
-            style: TextStyle(
-              fontFamily: AppFonts.openSans,
-              fontSize: 14,
-              color: url != null ? Colors.blue : null,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
@@ -161,14 +113,15 @@ class ProfileMainDisplay extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(
-          pictureUrl,
-          width: 90,
-          height: 90,
-          cacheWidth: 90,
-          cacheHeight: 90,
-          fit: BoxFit.scaleDown,
-          errorBuilder: (context, e, trace) => const FlutterLogo(),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: Image.asset(
+            pictureUrl,
+            width: 90,
+            //height: 90,
+            fit: BoxFit.scaleDown,
+            errorBuilder: (context, e, trace) => const FlutterLogo(),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),

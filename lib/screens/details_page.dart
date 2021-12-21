@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:weatherio/constants/settings.dart';
 import 'package:weatherio/models/forecast.dart';
 import 'package:weatherio/widgets/date_card.dart';
+import 'package:weatherio/widgets/icon_text.dart';
 
 class DetailsPage extends StatelessWidget {
   final Forecast forecast;
@@ -68,24 +69,31 @@ class _DataColumnState extends State<DataColumn> {
     return Column(
       children: [
         DataRow(
-          'Temperature',
-          dayForecast.temp2m.toString() + Settings.temperatureUnit,
+          icon: CupertinoIcons.thermometer,
+          title: 'Temperature',
+          data: dayForecast.temp2m.toString() + Settings.temperatureUnit,
         ),
         DataRow(
-          'Cloud Cover',
-          dayForecast.cloudcover.toString(),
+          icon: CupertinoIcons.cloud,
+          title: 'Cloud Cover',
+          data: dayForecast.cloudcover.toString(),
         ),
         DataRow(
-          'Lifted Index',
-          dayForecast.liftedIndex.toString(),
+          // Hard to represent the Lifted Index. A lifted hand index is the
+          // next best thing :)
+          icon: CupertinoIcons.hand_draw,
+          title: 'Lifted Index',
+          data: dayForecast.liftedIndex.toString(),
         ),
         DataRow(
-          'Seeing',
-          dayForecast.seeing.toString(),
+          icon: Icons.auto_awesome_outlined,
+          title: 'Seeing',
+          data: dayForecast.seeing.toString(),
         ),
         DataRow(
-          'Transparency',
-          dayForecast.transparency.toString(),
+          icon: Icons.lens_blur_outlined,
+          title: 'Transparency',
+          data: dayForecast.transparency.toString(),
         ),
         Card(
           elevation: 0,
@@ -115,10 +123,16 @@ class _DataColumnState extends State<DataColumn> {
 }
 
 class DataRow extends StatelessWidget {
+  final IconData icon;
   final String title;
   final String data;
 
-  const DataRow(this.title, this.data, {Key? key}) : super(key: key);
+  const DataRow({
+    Key? key,
+    required this.icon,
+    required this.title,
+    required this.data,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -129,9 +143,11 @@ class DataRow extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              style: const TextStyle(color: CupertinoColors.systemGrey),
+            IconText(
+              icon: icon,
+              iconColor: Colors.indigo,
+              text: title,
+              textColor: CupertinoColors.systemGrey,
             ),
             Text(data),
           ],
@@ -143,6 +159,7 @@ class DataRow extends StatelessWidget {
 
 class CityNameCard extends StatelessWidget {
   final String cityName;
+
   const CityNameCard(this.cityName, {Key? key}) : super(key: key);
 
   final titleStyle = const TextStyle(

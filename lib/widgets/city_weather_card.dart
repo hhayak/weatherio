@@ -24,6 +24,7 @@ class CityWeatherCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var dayForecast = forecast.dataseries.first;
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Card(
@@ -34,24 +35,27 @@ class CityWeatherCard extends StatelessWidget {
           child: Stack(
             alignment: Alignment.topCenter,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    Settings.city.name,
-                    style: titleStyle,
-                  ),
-                  DateCard(forecast.init),
-                  Text(
-                    forecast.dataseries.first.temp2m.toString() + Settings.temperatureUnit,
-                    style: tempStyle,
-                  ),
-                ],
+              // The scroll view prevents overflow when animating.
+              SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      Settings.city.name,
+                      style: titleStyle,
+                    ),
+                    DateCard(forecast.init
+                        .add(Duration(hours: dayForecast.timepoint))),
+                    Text(
+                      dayForecast.temp2m.toString() + Settings.temperatureUnit,
+                      style: tempStyle,
+                    ),
+                  ],
+                ),
               ),
               Align(
-                alignment: Alignment.centerRight,
+                alignment: Alignment.topRight,
                 child: IconButton(
                   onPressed: onRefresh,
                   icon: const Icon(

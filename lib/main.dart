@@ -12,11 +12,16 @@ void registerServices() {
 
 void main() {
   registerServices();
-  runApp(const MyApp());
+  runApp(const WeatherioApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+/// Root widget.
+///
+/// I assume the Profile and the City don't change. However, they are retrieved
+/// from a settings class which acts as a user defined preference stored in
+/// a persistent storage.
+class WeatherioApp extends StatelessWidget {
+  const WeatherioApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
