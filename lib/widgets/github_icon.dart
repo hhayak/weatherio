@@ -19,6 +19,8 @@
 ///
 import 'package:flutter/widgets.dart';
 
+/// To avoid adding whole packages for one icon, I have generated an [IconData]
+/// using fluttericon.com.
 class GithubIcon {
   GithubIcon._();
 
