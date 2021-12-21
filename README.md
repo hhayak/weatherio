@@ -1,6 +1,6 @@
 # Weatherio
 
-Case study project for Appinio.
+Case study project for a hiring process.
 
 ## Remarks
 
